@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+
+</head>
+<body>
+
+<h1>LA Skate Spots</h1>
+
+<div id="googleMap"></div>
+
+<script>
+function myMap() {
+	var mapProp = {
+    	center: new google.maps.LatLng(34.0409839,-118.3341862),
+    	zoom: 11,
+    	key: "AIzaSyDe2MhL3UEJoR19ACR0rnJ9gXAan9PQeIw",
+	};
+	var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	var markerOptions = {
+		position: new google.maps.LatLng(34.1153427, -118.2013258),
+	};
+	var marker = new google.maps.Marker(markerOptions);
+	marker.setMap(map);
+
+	var contentString = '<div id="content">'+
+		'<h3 id="spotName">Franklin High School</h3>'+'<p id="features">Flatground, Ledges, 5-Stair</p>'+'<p id="difficulty">Difficulty: 3/5</p>'+'</div>';
+
+	var infoWindowOptions = {
+		content: contentString,
+
+	};
+
+	var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+	google.maps.event.addListener(marker,'click',function(e){
+	
+		infoWindow.open(map, marker);
+	
+	});
+};
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe2MhL3UEJoR19ACR0rnJ9gXAan9PQeIw&callback=myMap"></script>
+
+</body>
+</html>
